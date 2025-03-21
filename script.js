@@ -1,4 +1,14 @@
 const booksDiv = document.querySelector('.books');
+const addBookBtn = document.getElementById('add-book-btn');
+
+// dialog&modal from mdn
+const addBookDialog = document.getElementById("add-book-dialog");
+const confirmBtn = addBookDialog.querySelector("#confirm-btn");
+const titleInput = addBookDialog.querySelector("#title-input");
+const authorInput = addBookDialog.querySelector("#author-input");
+const pagesInput = addBookDialog.querySelector("#pages-input");
+// const haveReadInput = addBookDialog.querySelector("#have-read-input");
+
 const myLibrary = [];
 
 function Book(title, author, pages, haveRead) {
@@ -17,10 +27,18 @@ function Book(title, author, pages, haveRead) {
 
 function addBookToLibrary(title, author, pages, haveRead) {
   const bookToAdd = new Book(title, author, pages, haveRead);
-  myLibrary.push(bookToAdd);
+  myLibrary.unshift(bookToAdd);
+  // displayBook(bookToAdd);
+}
+
+function clearLibrary() {
+  const books = document.querySelectorAll('.book');
+
+  books.forEach(book => booksDiv.removeChild(book));
 }
 
 function displayBooks() {
+  clearLibrary();
   myLibrary.forEach((item) => {
     const div = document.createElement('div');
     const pTitle = document.createElement('p');
@@ -48,48 +66,37 @@ function displayBooks() {
   });
 }
 
+// // "Show the dialog" button opens the <dialog> modally
+addBookBtn.addEventListener("click", () => {
+  console.log(Array.from(booksDiv.children))
+  addBookDialog.showModal();
+});
+
+// // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
+confirmBtn.addEventListener("click", (event) => {
+  event.preventDefault(); // We don't want to submit this fake form
+  console.log('add book');
+  const title = titleInput.value;
+  const author = authorInput.value;
+  const pages = pagesInput.value;
+  // const haveRead = haveReadInput.value;
+  addBookToLibrary(title, author, pages, false);  
+  displayBooks();
+  addBookDialog.close(); // Have to send the select box value here.
+});
+
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
 console.log(theHobbit.info())
 
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 295, false);
-
 addBookToLibrary('Casino Royale', 'Ian Fleming', 181, true);
-addBookToLibrary('1984', 'George Orwell', 328, false);
-addBookToLibrary('The Hobbit','J.R.R. Tolkien', 304, true);
-addBookToLibrary('And Then There Were None', 'Agatha Christie', 272, true);
-addBookToLibrary('Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 223, true);
-addBookToLibrary('Along Came a Spider', 'James Patterson', 464, false);
-addBookToLibrary('The Lightning Thief', 'Rick Riordan', 377, true);
+// addBookToLibrary('1984', 'George Orwell', 328, false);
+// addBookToLibrary('The Hobbit','J.R.R. Tolkien', 304, true);
+// addBookToLibrary('And Then There Were None', 'Agatha Christie', 272, true);
+// addBookToLibrary('Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 223, true);
+// addBookToLibrary('Along Came a Spider', 'James Patterson', 464, false);
+// addBookToLibrary('The Lightning Thief', 'Rick Riordan', 377, true);
 
 displayBooks();
 
 
 console.log(myLibrary);
-
-
-// const addBookBtn = document.getElementById('add-book-btn');
-
-// dialog&modal from mdn
-// const favDialog = document.getElementById("favDialog");
-// const confirmBtn = favDialog.querySelector("#confirmBtn");
-// const titleInput = favDialog.querySelector("#title-input");
-// const authorInput = favDialog.querySelector("#author-input");
-// const pagesInput = favDialog.querySelector("#pages-input");
-// const haveReadInput = favDialog.querySelector("#have-read-input");
-
-// // "Show the dialog" button opens the <dialog> modally
-// addBookBtn.addEventListener("click", () => {
-//   favDialog.showModal();
-// });
-
-// // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
-// confirmBtn.addEventListener("click", (event) => {
-//   event.preventDefault(); // We don't want to submit this fake form
-//   const title = titleInput.value;
-//   const author = authorInput.value;
-//   const pages = pagesInput.value;
-//   // const haveRead = haveReadInput.value;
-//   addToLibrary(title, author, pages, false);  
-//   updateUI();
-//   favDialog.close(); // Have to send the select box value here.
-// });

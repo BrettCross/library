@@ -12,8 +12,45 @@
     <div class="container">
       <div class="header">Header</div>
       <div class="books">
+        <div class="add-book">
+          <button id="add-book-btn">Add Book</button>
+        </div>
       </div>
     </div>
+    <!-- A modal dialog containing a form -->
+<dialog id="add-book-dialog">
+  <form>
+    <p>
+      <label for="title-input">Title:</label>
+    </p>
+    <input type="text" id="title-input" name:"title">
+    <p>
+      <label for="author-input">Author:</label>
+    </p>
+    <input type="text" id="author-input" name="author">
+    <p>
+      <label for="pages-input">Number of Pages:</label>
+    </p>
+    <input type="number" id="pages-input" name="number-of-pages">
+    <p>
+      <label>Have you read this book?</label>
+    </p>
+      <div class="radio-options">
+        <span>
+          <input type="radio" id="" value="false" name="have-read" checked>
+          <label>No</label> 
+        </span>
+        <span>
+          <input type="radio" value="true" name="have-read">
+          <label>Yes</label> 
+        </span>
+      </div>
+    <div class="dialog-buttons">
+      <button value="cancel" formmethod="dialog">Cancel</button>
+      <button id="confirm-btn" value="default">Confirm</button>
+    </div>
+  </form>
+</dialog>
   </main>
   <script src="script.js"></script>
 </body>
