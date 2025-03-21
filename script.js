@@ -26,6 +26,10 @@ function Book(title, author, pages, haveRead) {
   }
 }
 
+Book.prototype.changeStatus = function() {
+  this.haveRead = !this.haveRead;
+}
+
 function addBookToLibrary(title, author, pages, haveRead) {
   const bookToAdd = new Book(title, author, pages, haveRead);
   myLibrary.unshift(bookToAdd);
@@ -54,6 +58,9 @@ function displayBooks() {
     const pNumPages = document.createElement('p');
     const pHaveRead = document.createElement('p');
     const divDelete = document.createElement('div');
+    const divStatus = document.createElement('div');
+    const inputStatus = document.createElement('input');
+    const labelStatus = document.createElement('label');
     
     div.className = 'book';
     pTitle.className = 'title';
@@ -61,18 +68,26 @@ function displayBooks() {
     pNumPages.className = 'pages';
     pHaveRead.className = 'read';
     divDelete.className = 'delete';
+    divStatus.className = 'status';
+    
+    inputStatus.type = 'checkbox';
     
     pTitle.textContent = item.title;
     pAuthor.textContent = item.author;
-    pNumPages.textContent = item.pages;
-    pHaveRead.textContent = item.haveRead ? 'read' : 'not read';
+    pNumPages.textContent = item.pages + ' pgs';
+    // pHaveRead.textContent = item.haveRead ? 'read' : 'not read';
+    labelStatus.textContent = item.haveRead ? 'read' : 'not read';
+    inputStatus.checked = item.haveRead;
     divDelete.textContent = 'X';
+    divStatus.appendChild(inputStatus);
 
+    divStatus.appendChild(labelStatus);
     
     div.appendChild(pTitle);
     div.appendChild(pAuthor);
     div.appendChild(pNumPages);
     div.appendChild(pHaveRead);
+    div.appendChild(divStatus);
     div.appendChild(divDelete);
     
     booksDiv.appendChild(div);
@@ -84,12 +99,17 @@ function displayBooks() {
       removeBookFromLibrary(item);
       displayBooks();
     });
+
+    inputStatus.addEventListener('click', () => {
+      item.changeStatus();
+      labelStatus.textContent = item.haveRead ? 'read' : 'not read';
+    });
   });
 }
 
-function removeBookFromDisplay(book) {
-  return;
-}
+// function removeBookFromDisplay(book) {
+//   return;
+// }
 
 // // "Show the dialog" button opens the <dialog> modally
 addBookBtn.addEventListener("click", () => {
@@ -118,6 +138,9 @@ confirmBtn.addEventListener("click", (event) => {
 });
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
+console.log(theHobbit.info())
+theHobbit.changeStatus();
+console.log(theHobbit.haveRead);
 console.log(theHobbit.info())
 
 addBookToLibrary('Casino Royale', 'Ian Fleming', 181, true);

@@ -64,6 +64,17 @@
   background-color: #eee;
 }
 
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.status > label {
+  margin-left: 0.5rem;
+}
+
 #add-book-dialog {
   margin: auto;
   padding: 1rem;
