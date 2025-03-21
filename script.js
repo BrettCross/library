@@ -34,7 +34,6 @@ function addBookToLibrary(title, author, pages, haveRead) {
 
 function clearLibrary() {
   const books = document.querySelectorAll('.book');
-
   books.forEach(book => booksDiv.removeChild(book));
 }
 
@@ -87,7 +86,6 @@ confirmBtn.addEventListener("click", (event) => {
       haveRead = radioBtn.value === 'yes' ? true : false;
     }
   }
-
 
   addBookToLibrary(title, author, pages, haveRead);  
   displayBooks();
