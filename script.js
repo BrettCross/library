@@ -29,7 +29,15 @@ function Book(title, author, pages, haveRead) {
 function addBookToLibrary(title, author, pages, haveRead) {
   const bookToAdd = new Book(title, author, pages, haveRead);
   myLibrary.unshift(bookToAdd);
-  // displayBook(bookToAdd);
+}
+
+function removeBookFromLibrary(book) {
+  // remove book from library array
+  const foundIndex = myLibrary.findIndex((element) => element === book);
+  const removed = myLibrary.splice(foundIndex, 1);
+  console.log('from remove', removed);
+  console.log(myLibrary);
+  return removed;
 }
 
 function clearLibrary() {
@@ -45,25 +53,42 @@ function displayBooks() {
     const pAuthor = document.createElement('p');
     const pNumPages = document.createElement('p');
     const pHaveRead = document.createElement('p');
+    const divDelete = document.createElement('div');
     
     div.className = 'book';
     pTitle.className = 'title';
     pAuthor.className = 'author';
     pNumPages.className = 'pages';
     pHaveRead.className = 'read';
+    divDelete.className = 'delete';
     
     pTitle.textContent = item.title;
     pAuthor.textContent = item.author;
     pNumPages.textContent = item.pages;
     pHaveRead.textContent = item.haveRead ? 'read' : 'not read';
+    divDelete.textContent = 'X';
+
     
     div.appendChild(pTitle);
     div.appendChild(pAuthor);
     div.appendChild(pNumPages);
     div.appendChild(pHaveRead);
+    div.appendChild(divDelete);
     
     booksDiv.appendChild(div);
+    
+    divDelete.addEventListener('click', () => {
+      // remove item from library
+      // update display
+      console.log('from event listener', item.id);
+      removeBookFromLibrary(item);
+      displayBooks();
+    });
   });
+}
+
+function removeBookFromDisplay(book) {
+  return;
 }
 
 // // "Show the dialog" button opens the <dialog> modally

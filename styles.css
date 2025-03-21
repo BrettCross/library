@@ -49,6 +49,21 @@
   border: 2px solid black;
 }
 
+.delete {
+  background-color: #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  cursor: pointer;
+}
+
+.delete:hover {
+  background-color: #eee;
+}
+
 #add-book-dialog {
   margin: auto;
   padding: 1rem;
