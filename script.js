@@ -8,6 +8,7 @@ const titleInput = addBookDialog.querySelector("#title-input");
 const authorInput = addBookDialog.querySelector("#author-input");
 const pagesInput = addBookDialog.querySelector("#pages-input");
 // const haveReadInput = addBookDialog.querySelector("#have-read-input");
+const readRadioBtns = document.querySelectorAll('input[name="read"]')
 
 const myLibrary = [];
 
@@ -79,8 +80,16 @@ confirmBtn.addEventListener("click", (event) => {
   const title = titleInput.value;
   const author = authorInput.value;
   const pages = pagesInput.value;
-  // const haveRead = haveReadInput.value;
-  addBookToLibrary(title, author, pages, false);  
+  
+  let haveRead;
+  for (const radioBtn of readRadioBtns) {
+    if (radioBtn.checked) {
+      haveRead = radioBtn.value === 'yes' ? true : false;
+    }
+  }
+
+
+  addBookToLibrary(title, author, pages, haveRead);  
   displayBooks();
   addBookDialog.close(); // Have to send the select box value here.
 });

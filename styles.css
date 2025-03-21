@@ -31,6 +31,7 @@
   height: 12rem;
   padding: 1rem;
   margin: 1rem;
+  border-radius: 10px;
   border: 2px solid black;
 }
 
@@ -44,12 +45,18 @@
   height: 12rem;
   padding: 1rem;
   margin: 1rem;
+  border-radius: 10px;
   border: 2px solid black;
 }
 
 #add-book-dialog {
   margin: auto;
   padding: 1rem;
+  border-radius: 10px;
+}
+
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 #add-book-dialog p {
