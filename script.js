@@ -113,12 +113,22 @@ addBookBtn.addEventListener("click", () => {
 });
 
 closeSpan.addEventListener("click", () => {
+  // reset form on cancel/close
+  titleInput.value = '';
+  authorInput.value = '';
+  pagesInput.value = '';
+  haveReadInput.checked = false;
   modal.style.display = "none";
 })
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
   if (event.target == modal) {
+    // reset form on cancel/close
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    haveReadInput.checked = false;
     modal.style.display = "none";
   }
 } 
