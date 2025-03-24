@@ -154,6 +154,7 @@ confirmBtn.addEventListener("click", (e) => {
     authorInput.value = '';
     pagesInput.value = '';
     haveReadInput.checked = false;
+    modal.style.display = "none";
   } else {
     addBookForm.reportValidity();
   }
