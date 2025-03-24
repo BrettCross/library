@@ -75,28 +75,6 @@
   margin-left: 0.5rem;
 }
 
-/* #add-book-dialog {
-  margin: auto;
-  padding: 1rem;
-  border-radius: 10px;
-} */
-
-/* ::backdrop {
-  background-color: rgba(0, 0, 0, 0.2);
-} */
-
-/* #add-book-dialog p {
-  margin-bottom: 0.5rem;
-} */
-
-/* #add-book-dialog input {
-  margin-bottom: 1rem;
-} */
-
-/* #add-book-dialog .have-read-radio {
-  text-align: center;
-} */
-
  /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */

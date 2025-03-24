@@ -1,8 +1,6 @@
 const booksDiv = document.querySelector('.books');
 const addBookBtn = document.getElementById('add-book-btn');
 
-// dialog&modal from mdn
-// const addBookDialog = document.getElementById("add-book-dialog");
 const modal = document.getElementById("modal");
 const closeSpan = document.getElementById("close-span");
 const addBookForm = document.getElementById("add-book-form");
@@ -10,8 +8,7 @@ const confirmBtn = modal.querySelector("#confirm-btn");
 const titleInput = modal.querySelector("#title-input");
 const authorInput = modal.querySelector("#author-input");
 const pagesInput = modal.querySelector("#pages-input");
-const haveReadInput = modal.querySelector("#have-read-input");
-// const readRadioBtns = document.querySelectorAll('input[name="read"]')
+const haveReadInput = modal.querySelector("#have-read-input")
 
 const myLibrary = [];
 
@@ -78,7 +75,6 @@ function displayBooks() {
     pTitle.textContent = item.title;
     pAuthor.textContent = item.author;
     pNumPages.textContent = item.pages + ' pgs';
-    // pHaveRead.textContent = item.haveRead ? 'read' : 'not read';
     labelStatus.textContent = item.haveRead ? 'read' : 'not read';
     inputStatus.checked = item.haveRead;
     divDelete.textContent = 'X';
@@ -110,14 +106,9 @@ function displayBooks() {
   });
 }
 
-// function removeBookFromDisplay(book) {
-//   return;
-// }
-
 // // "Show the dialog" button opens the <dialog> modally
 addBookBtn.addEventListener("click", () => {
   console.log(Array.from(booksDiv.children))
-  // addBoodDialog.showModal();
   modal.style.display = "block";
 });
 
@@ -141,12 +132,6 @@ confirmBtn.addEventListener("click", (e) => {
     const author = authorInput.value;
     const pages = pagesInput.value;
     const haveRead = haveReadInput.checked;
-    // let haveRead;
-    // for (const radioBtn of readRadioBtns) {
-    //   if (radioBtn.checked) {
-    //     haveRead = radioBtn.value === 'yes' ? true : false;
-    //   }
-    // }
 
     addBookToLibrary(title, author, pages, haveRead);  
     displayBooks();
@@ -158,26 +143,6 @@ confirmBtn.addEventListener("click", (e) => {
   } else {
     addBookForm.reportValidity();
   }
-
-  // console.log('add book');
-  // const title = titleInput.value;
-  // const author = authorInput.value;
-  // const pages = pagesInput.value;
-  // const haveRead = haveReadInput.checked;
-  // // let haveRead;
-  // // for (const radioBtn of readRadioBtns) {
-  // //   if (radioBtn.checked) {
-  // //     haveRead = radioBtn.value === 'yes' ? true : false;
-  // //   }
-  // // }
-
-  // addBookToLibrary(title, author, pages, haveRead);  
-  // displayBooks();
-  // titleInput.value = '';
-  // authorInput.value = '';
-  // pagesInput.value = '';
-  // haveReadInput.checked = false;
-  // modal.close(); // Have to send the select box value here.
 });
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
@@ -187,12 +152,12 @@ console.log(theHobbit.haveRead);
 console.log(theHobbit.info())
 
 addBookToLibrary('Casino Royale', 'Ian Fleming', 181, true);
-// addBookToLibrary('1984', 'George Orwell', 328, false);
-// addBookToLibrary('The Hobbit','J.R.R. Tolkien', 304, true);
-// addBookToLibrary('And Then There Were None', 'Agatha Christie', 272, true);
-// addBookToLibrary('Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 223, true);
-// addBookToLibrary('Along Came a Spider', 'James Patterson', 464, false);
-// addBookToLibrary('The Lightning Thief', 'Rick Riordan', 377, true);
+addBookToLibrary('1984', 'George Orwell', 328, false);
+addBookToLibrary('The Hobbit','J.R.R. Tolkien', 304, true);
+addBookToLibrary('And Then There Were None', 'Agatha Christie', 272, true);
+addBookToLibrary('Harry Potter and the Philosopher\'s Stone', 'J.K. Rowling', 223, true);
+addBookToLibrary('Along Came a Spider', 'James Patterson', 464, false);
+addBookToLibrary('The Lightning Thief', 'Rick Riordan', 377, true);
 
 displayBooks();
 
