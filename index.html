@@ -22,7 +22,7 @@
   <div id="modal" class="modal">
     <div class="modal-content">
       <span id="close-span" class="close">&times;</span>
-      <form>
+      <form id="add-book-form">
         <p>
           <label for="title-input">Title:</label>
         </p>
@@ -30,11 +30,11 @@
         <p>
           <label for="author-input">Author:</label>
         </p>
-        <input type="text" id="author-input" name="author">
+        <input type="text" id="author-input" name="author" required>
         <p>
           <label for="pages-input">Number of Pages:</label>
         </p>
-        <input type="number" id="pages-input" name="number-of-pages">
+        <input type="number" id="pages-input" name="number-of-pages" required>
         <p>
           <label>Have you read this book?</label>
         </p>
@@ -53,7 +53,7 @@
             </span>
           </div> -->
         <div class="dialog-buttons">
-          <button id="confirm-btn" value="default">Confirm</button>
+          <button id="confirm-btn" type="submit">Confirm</button>
         </div>
       </form>
     </div>

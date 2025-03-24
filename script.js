@@ -5,6 +5,7 @@ const addBookBtn = document.getElementById('add-book-btn');
 // const addBookDialog = document.getElementById("add-book-dialog");
 const modal = document.getElementById("modal");
 const closeSpan = document.getElementById("close-span");
+const addBookForm = document.getElementById("add-book-form");
 const confirmBtn = modal.querySelector("#confirm-btn");
 const titleInput = modal.querySelector("#title-input");
 const authorInput = modal.querySelector("#author-input");
@@ -132,27 +133,50 @@ window.onclick = function(event) {
 } 
 
 // // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
-confirmBtn.addEventListener("click", (event) => {
-  event.preventDefault(); // We don't want to submit this fake form
-  console.log('add book');
-  const title = titleInput.value;
-  const author = authorInput.value;
-  const pages = pagesInput.value;
-  const haveRead = haveReadInput.checked;
-  // let haveRead;
-  // for (const radioBtn of readRadioBtns) {
-  //   if (radioBtn.checked) {
-  //     haveRead = radioBtn.value === 'yes' ? true : false;
-  //   }
-  // }
+confirmBtn.addEventListener("click", (e) => {
+  e.preventDefault(); // We don't want to submit this fake form
+  if (addBookForm.checkValidity()) {
+    console.log('add book');
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const pages = pagesInput.value;
+    const haveRead = haveReadInput.checked;
+    // let haveRead;
+    // for (const radioBtn of readRadioBtns) {
+    //   if (radioBtn.checked) {
+    //     haveRead = radioBtn.value === 'yes' ? true : false;
+    //   }
+    // }
 
-  addBookToLibrary(title, author, pages, haveRead);  
-  displayBooks();
-  titleInput.value = '';
-  authorInput.value = '';
-  pagesInput.value = '';
-  haveReadInput.checked = false;
-  modal.close(); // Have to send the select box value here.
+    addBookToLibrary(title, author, pages, haveRead);  
+    displayBooks();
+    titleInput.value = '';
+    authorInput.value = '';
+    pagesInput.value = '';
+    haveReadInput.checked = false;
+  } else {
+    addBookForm.reportValidity();
+  }
+
+  // console.log('add book');
+  // const title = titleInput.value;
+  // const author = authorInput.value;
+  // const pages = pagesInput.value;
+  // const haveRead = haveReadInput.checked;
+  // // let haveRead;
+  // // for (const radioBtn of readRadioBtns) {
+  // //   if (radioBtn.checked) {
+  // //     haveRead = radioBtn.value === 'yes' ? true : false;
+  // //   }
+  // // }
+
+  // addBookToLibrary(title, author, pages, haveRead);  
+  // displayBooks();
+  // titleInput.value = '';
+  // authorInput.value = '';
+  // pagesInput.value = '';
+  // haveReadInput.checked = false;
+  // modal.close(); // Have to send the select box value here.
 });
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
