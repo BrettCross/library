@@ -2,12 +2,14 @@ const booksDiv = document.querySelector('.books');
 const addBookBtn = document.getElementById('add-book-btn');
 
 // dialog&modal from mdn
-const addBookDialog = document.getElementById("add-book-dialog");
-const confirmBtn = addBookDialog.querySelector("#confirm-btn");
-const titleInput = addBookDialog.querySelector("#title-input");
-const authorInput = addBookDialog.querySelector("#author-input");
-const pagesInput = addBookDialog.querySelector("#pages-input");
-const haveReadInput = addBookDialog.querySelector("#have-read-input");
+// const addBookDialog = document.getElementById("add-book-dialog");
+const modal = document.getElementById("modal");
+const closeSpan = document.getElementById("close-span");
+const confirmBtn = modal.querySelector("#confirm-btn");
+const titleInput = modal.querySelector("#title-input");
+const authorInput = modal.querySelector("#author-input");
+const pagesInput = modal.querySelector("#pages-input");
+const haveReadInput = modal.querySelector("#have-read-input");
 // const readRadioBtns = document.querySelectorAll('input[name="read"]')
 
 const myLibrary = [];
@@ -114,8 +116,20 @@ function displayBooks() {
 // // "Show the dialog" button opens the <dialog> modally
 addBookBtn.addEventListener("click", () => {
   console.log(Array.from(booksDiv.children))
-  addBookDialog.showModal();
+  // addBoodDialog.showModal();
+  modal.style.display = "block";
 });
+
+closeSpan.addEventListener("click", () => {
+  modal.style.display = "none";
+})
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+} 
 
 // // Prevent the "confirm" button from the default behavior of submitting the form, and close the dialog with the `close()` method, which triggers the "close" event.
 confirmBtn.addEventListener("click", (event) => {
@@ -138,7 +152,7 @@ confirmBtn.addEventListener("click", (event) => {
   authorInput.value = '';
   pagesInput.value = '';
   haveReadInput.checked = false;
-  addBookDialog.close(); // Have to send the select box value here.
+  modal.close(); // Have to send the select box value here.
 });
 
 const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', 295, false);
